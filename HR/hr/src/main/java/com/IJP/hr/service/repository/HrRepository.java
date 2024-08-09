@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface HrRepository extends JpaRepository<HrEntity, Integer> {
     Optional<HrEntity> findByEmail(String email);
+    HrEntity save(HrEntity hrEntity);
 }
 
