@@ -1,19 +1,23 @@
 package com.IJP.jobs.services.controller;
 
 import com.IJP.jobs.services.entity.JobEntity;
-import com.IJP.jobs.services.services.jobservice;
+import com.IJP.jobs.services.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Jobs")
-public class jobcontroller {
+public class JobController {
+
+
 
     @Autowired
-    private jobservice Jobservice;
+    private JobService Jobservice;
 
-    @GetMapping("/{job_id}/{emp_id}")
+
+    //TODO Make list of jobs by HrID
+    @GetMapping("/{hr_id}")
     public ResponseEntity<JobEntity> getJobById(@PathVariable String job_id, @RequestParam String emp_id)
     {
         JobEntity job = Jobservice.appliedjob(job_id,emp_id);
@@ -22,8 +26,11 @@ public class jobcontroller {
 
     @PostMapping("/create/{hrId}")
     public ResponseEntity<JobEntity> postJobById(@RequestBody JobEntity jobEntity,@PathVariable String hrId){
+        System.out.println("inside controller");
 
-        return null;
+     JobEntity job= Jobservice.postJob(jobEntity,hrId);
+     return ResponseEntity.ok(job);
+
     }
 
 }
