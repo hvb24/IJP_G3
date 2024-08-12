@@ -1,5 +1,6 @@
 package com.IJP.candidate.service.services.impl;
 
+import com.IJP.candidate.service.exception.ResourceNotFoundException;
 import com.IJP.candidate.service.repository.CandidateRepository;
 import com.IJP.candidate.service.services.CandidateServices;
 import jakarta.validation.constraints.Null;
@@ -18,8 +19,8 @@ public class CandidateServiceImpl implements CandidateServices {
     @Override
     public Candidate getCandidateId(String id) {
         // Assuming 'id' is a unique identifier and CandidateRepo returns Candidate
-        Optional<Candidate> candidate = candidateRepo.findById(id);
-        return candidate.orElse(null); // Returns null if no candidate is found
+         Candidate candidate = candidateRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Candidate", "id", id));
+        return candidate; // Returns null if no candidate is found
     }
 
     @Override

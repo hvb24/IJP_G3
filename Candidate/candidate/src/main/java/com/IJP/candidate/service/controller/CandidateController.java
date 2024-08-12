@@ -15,8 +15,13 @@ public class CandidateController {
     private CandidateServices candidateService;
 
     @GetMapping("/{id}")
-    public Candidate getCandidate(@PathVariable String id){
-        return candidateService.getCandidateId(id);
+    public ResponseEntity<Candidate> getCandidate(@PathVariable String id){
+
+
+            Candidate data= candidateService.getCandidateId(id);
+        if (data == null)
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
     @PostMapping
