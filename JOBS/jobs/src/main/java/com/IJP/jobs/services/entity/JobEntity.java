@@ -24,18 +24,19 @@ import java.util.List;
                 })
         }
 )
-public class jobentity {
+public class JobEntity {
     @Id
     private String job_id;
-    private String desc;
+    private String description;
     private String location;
     private String reqSkill;
-    private int yearofex;
+    private int yearOfExperience;
     private String languages;
     private double salaryR;
     private List<String> empIds = new ArrayList<>();
+    private String hrId;
 
-    private long jobidcount = 0;
+    static private long jobidcount = 0;
 
     @PrePersist
     public void generatejob_id()

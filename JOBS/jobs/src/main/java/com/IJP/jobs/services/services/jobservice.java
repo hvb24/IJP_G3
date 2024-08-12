@@ -1,7 +1,7 @@
 package com.IJP.jobs.services.services;
 
-import com.IJP.jobs.services.entity.jobentity;
+import com.IJP.jobs.services.entity.JobEntity;
 
 public interface jobservice{
-    jobentity appliedjob(String job_id, String emp_id);
+    JobEntity appliedjob(String job_id, String emp_id);
 }
