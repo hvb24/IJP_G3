@@ -1,6 +1,6 @@
 package com.IJP.jobs.services.services.impl;
 
-import com.IJP.jobs.services.entity.jobentity;
+import com.IJP.jobs.services.entity.JobEntity;
 import com.IJP.jobs.services.repository.jobrepository;
 import com.IJP.jobs.services.services.jobservice;
 import jakarta.transaction.Transactional;
@@ -18,12 +18,12 @@ public class jobserviceimpl implements jobservice {
     private jobrepository Jobrepository;
 
     @Transactional
-    public jobentity appliedjob(String job_id,String emp_id)
+    public JobEntity appliedjob(String job_id,String emp_id)
     {
-        Optional<jobentity> optionaljob = Jobrepository.findById(job_id);
+        Optional<JobEntity> optionaljob = Jobrepository.findById(job_id);
         if(optionaljob.isPresent())
         {
-            jobentity job = optionaljob.get();
+            JobEntity job = optionaljob.get();
             job.getEmpIds().add(emp_id);
             return Jobrepository.save(job);
         }
