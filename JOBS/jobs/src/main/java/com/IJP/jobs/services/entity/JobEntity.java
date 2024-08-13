@@ -1,16 +1,9 @@
 package com.IJP.jobs.services.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
@@ -33,7 +26,6 @@ public class JobEntity {
     private int yearOfExperience;
     private String languages;
     private double salaryR;
-    private List<String> empIds = new ArrayList<>();
     private String hrId;
 
     static private long jobidcount = 0;
