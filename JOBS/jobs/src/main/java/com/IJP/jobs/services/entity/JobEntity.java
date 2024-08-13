@@ -33,6 +33,7 @@ public class JobEntity {
     @PrePersist
     public void generatejob_id()
     {
+        System.out.println("hello");
         jobidcount++;
         this.job_id =  "JOB" + String.format("%04d",jobidcount);
     }

@@ -1,5 +1,6 @@
 package com.IJP.jobs.services.services;
 
+
 import com.IJP.jobs.services.entity.ApplicationEntity;
 import com.IJP.jobs.services.entity.JobEntity;
 

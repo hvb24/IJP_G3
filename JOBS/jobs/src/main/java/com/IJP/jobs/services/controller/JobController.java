@@ -31,6 +31,7 @@ public class JobController {
     @PostMapping("/create/{hrId}")
     public ResponseEntity<JobEntity> postJobById(@RequestBody JobEntity jobEntity,@PathVariable String hrId){
         System.out.println("inside post JobById");
+
      JobEntity job= Jobservice.postJob(jobEntity,hrId);
      return ResponseEntity.ok(job);
 
@@ -77,5 +78,4 @@ public class JobController {
         }
         return new ResponseEntity<>("Job Application failed", HttpStatus.BAD_REQUEST);
     }
-
 }
