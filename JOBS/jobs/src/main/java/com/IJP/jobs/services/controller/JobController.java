@@ -78,4 +78,14 @@ public class JobController {
         return new ResponseEntity<>("Job Application failed", HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/get-emp-jobId/{jobId}")
+    public ResponseEntity<List<ApplicationEntity>> getApplicationsByJobId(@PathVariable String jobId){
+        System.out.println("inside getApplicationsByJobId"+jobId);
+        List<ApplicationEntity> res = Jobservice.getApplicationsByJobId(jobId);
+        if(res.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(res);
+    }
+
 }

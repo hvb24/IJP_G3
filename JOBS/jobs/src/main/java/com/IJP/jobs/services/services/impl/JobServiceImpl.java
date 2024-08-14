@@ -60,6 +60,10 @@ public class JobServiceImpl implements JobService {
         return true;
     }
 
+    public List<ApplicationEntity> getApplicationsByJobId(String jobId) {
+        return applicationRepository.findByJobId(jobId);
+    }
+
 
 
 
