@@ -1,5 +1,6 @@
 package com.IJP.jobs.services.services.impl;
 
+
 import com.IJP.jobs.services.entity.ApplicationEntity;
 import com.IJP.jobs.services.entity.JobEntity;
 import com.IJP.jobs.services.repository.ApplicationRepository;
@@ -16,17 +17,21 @@ public class JobServiceImpl implements JobService {
 
     @Autowired
     private JobRepository Jobrepository;
+
     @Autowired
     private ApplicationRepository applicationRepository;
-
 
 
     @Override
     public JobEntity postJob(JobEntity jobEntity, String hrId) {
 
         jobEntity.setHrId(hrId); // Ensure HR ID is set
+
+        System.out.println("inside the service impl");
+
         return Jobrepository.save(jobEntity);
     }
+
 
 
     @Override
@@ -63,8 +68,6 @@ public class JobServiceImpl implements JobService {
     public List<ApplicationEntity> getApplicationsByJobId(String jobId) {
         return applicationRepository.findByJobId(jobId);
     }
-
-
 
 
 }
