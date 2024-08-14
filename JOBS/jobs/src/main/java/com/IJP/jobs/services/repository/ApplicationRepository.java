@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ApplicationRepository extends JpaRepository<ApplicationEntity,Long> {
     List<ApplicationEntity> findByEmpId(String empId);
+    List<ApplicationEntity> findByJobId(String jobId);
 }
