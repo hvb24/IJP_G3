@@ -54,6 +54,19 @@ public class JobController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/jobsByHrId/{hr_id}")
+    public ResponseEntity<List<JobEntity>> getJobByHrId(@PathVariable String hr_id){
+
+        System.out.println("inside getJobByHRId"+hr_id);
+        List<JobEntity> res = Jobservice.getJobByHrId(hr_id);
+        System.out.println(res);
+        if(res != null){
+            return ResponseEntity.ok(res);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @GetMapping("/by-empid/{empId}")
     public ResponseEntity<List<ApplicationEntity>> getApplicationsByEmpId(@PathVariable String empId){
@@ -69,12 +82,25 @@ public class JobController {
         }
     }
 
+
     @PostMapping("/post-job-empID")
     public ResponseEntity<String> applyToJob(@RequestParam("empId") String empId, @RequestParam("jobId") String jobId){
        System.out.println("inside applyToJob controller"+empId+jobId);
         boolean res = Jobservice.applyToJob(empId,jobId);
         if(res){
             return new ResponseEntity<>("Application submitted successfully.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Job Application failed", HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("/{jobId}")
+    public ResponseEntity<String> deleteJobByJobId (@PathVariable String jobId ){
+
+
+        boolean res= Jobservice.deleteJobByJobId(jobId);
+
+        if(res){
+            return new ResponseEntity<>("Job Deleted successfully.", HttpStatus.OK);
         }
         return new ResponseEntity<>("Job Application failed", HttpStatus.BAD_REQUEST);
     }

@@ -15,4 +15,6 @@ public interface JobService {
     List<ApplicationEntity> getApplicationsByEmpId(String emp_id);
     boolean applyToJob(String jobId, String empId);
     List<ApplicationEntity> getApplicationsByJobId(String jobId);
+    boolean deleteJobByJobId(String jobId);
+    List<JobEntity> getJobByHrId(String hr_id);
 }

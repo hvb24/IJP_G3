@@ -6,8 +6,10 @@ import com.IJP.jobs.services.entity.JobEntity;
 import com.IJP.jobs.services.repository.ApplicationRepository;
 import com.IJP.jobs.services.repository.JobRepository;
 import com.IJP.jobs.services.services.JobService;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -45,6 +47,11 @@ public class JobServiceImpl implements JobService {
                 .orElse(null); // Return null if not found
     }
 
+    @Override
+    public List<JobEntity> getJobByHrId(String hr_id) {
+        return Jobrepository.findJobsByHrId(hr_id);
+    }
+
     public List<ApplicationEntity> getApplicationsByEmpId(String empId) {
         return applicationRepository.findByEmpId(empId);
     }
@@ -63,6 +70,20 @@ public class JobServiceImpl implements JobService {
         applicationRepository.save(application);
 
         return true;
+    }
+    @Transactional
+    @Override
+     public boolean deleteJobByJobId(String job_id){
+        JobEntity job = Jobrepository.findById(job_id)
+                .orElse(null);
+        System.out.println("inside delete job impl "+job);
+        if (job != null) {
+            // Delete job
+            Jobrepository.deleteById(job_id);
+            applicationRepository.deleteByJobId(job_id);
+            return true;
+        }
+        return false;
     }
 
     public List<ApplicationEntity> getApplicationsByJobId(String jobId) {
